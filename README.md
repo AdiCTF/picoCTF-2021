@@ -39,12 +39,13 @@ Can you invoke help flags for a tool or binary? [This program](picoCTF-2021-ass
 :triangular_flag_on_post: **picoCTF{b1scu1ts_4nd_gr4vy_d6969390}**
 
 There are two ways to solve this challenge:
-_Way 1_
+
+_Way 1_-
 Opening the program in HxD and searching (with ctrl+f) "pico" - this will find us the beginning of the flag.
 
 ![image](https://user-images.githubusercontent.com/119416868/205487497-8a1cb8ba-db7a-4e7f-ae01-124e08ca6abd.png)
 
-_Way 2_
+_Way 2_-
 Trying to run the program in wsl. When adding the flag -h - it would reveal us the correct flag.
 
 ![image](https://user-images.githubusercontent.com/119416868/205487515-13131987-c155-4983-8a2f-e56d0ceb7b10.png)
@@ -71,7 +72,7 @@ Files can always be changed in a secret way. Can you find the flag? [cat.jpg](p
 
 When opening the image there is a cute :cat2: but is doesn't help us. We will look at the meta-data of this image with exiftool (exiftool cat.jpg).
 
-
+![image](https://user-images.githubusercontent.com/119416868/205489998-a9afe0cb-9206-4bdd-8a0c-7914c95095d1.png)
 
 The License field looks like Base64 - and when decoding it we will reveal the flag.
 :cat:
