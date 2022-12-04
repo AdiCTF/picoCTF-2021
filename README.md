@@ -38,7 +38,7 @@ Can you invoke help flags for a tool or binary? [This program](picoCTF-2021-ass
 
 :triangular_flag_on_post: **picoCTF{b1scu1ts_4nd_gr4vy_d6969390}**
 
-There are two ways to solve this challenge:
+I found two ways to solve this challenge:
 
 _Way 1_-
 Opening the program in HxD and searching (with ctrl+f) "pico" - this will find us the beginning of the flag.
@@ -49,6 +49,18 @@ _Way 2_-
 Trying to run the program in wsl. When adding the flag -h - it would reveal us the correct flag.
 
 ![image](https://user-images.githubusercontent.com/119416868/205487515-13131987-c155-4983-8a2f-e56d0ceb7b10.png)
+
+
+## Nice netcat...
+There is a nice program that you can talk to by using this command in a shell: `$ nc mercury.picoctf.net 22342`, but it doesn't speak English...
+
+**solution:**
+
+:triangular_flag_on_post: **picoCTF{g00d_k1tty!_n1c3_k1tty!_5fb5e51d}**
+
+`nc mercury.picoctf.net 22342` is giving us a list of numbers. I thought that these numbers represent ASCII characters. Therefore, I redirect this list to a file called `inputNetcat.txt`.
+Note that I used the command `bash` for the next commands.
+Then, I ran a code that goes line by line and convert the number to its ASCII charecter: `while read -r line; do printf \\$(printf "%o" $line); done < inputNetcat.txt`.
 
 
 # Cryptography
@@ -70,7 +82,7 @@ Files can always be changed in a secret way. Can you find the flag? [cat.jpg](p
 
 :triangular_flag_on_post: **picoCTF{the_m3tadata_1s_modified}**
 
-When opening the image there is a cute :cat2: but is doesn't help us. We will look at the meta-data of this image with exiftool (exiftool cat.jpg).
+When opening the image there is a cute :cat2: but is doesn't help us. We will look at the meta-data of this image with exiftool (`exiftool cat.jpg`).
 
 ![image](https://user-images.githubusercontent.com/119416868/205489998-a9afe0cb-9206-4bdd-8a0c-7914c95095d1.png)
 
