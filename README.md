@@ -22,10 +22,26 @@ Python scripts are invoked kind of like programs in the Terminal... Can you run 
 :triangular_flag_on_post: **picoCTF{4p0110_1n_7h3_h0us3_6008014f}**
 
 We have 3 files here - python script, a password (a string) and a flag (a string). When looking at the python script there are two interesting strings:
-![[Pasted image 20221204115122.png]]
+![image](https://user-images.githubusercontent.com/119416868/205485956-f1dde24c-7cfe-4fd3-94ef-6a309980b9d1.png)
 sys.argv[0] refers to the python script. We can assume from the script and the help_msg that we need to use the flag -e if we would like to encrypt and the flag -d if we would like to decrypt.
-![[Pasted image 20221204120132.png]]
+![image](https://user-images.githubusercontent.com/119416868/205485937-0be2977b-4222-4a0a-8370-6498a20b35e8.png)
 Now, we will enter the password that was given to us - 6008014f6008014f6008014f6008014f and reveal the correct flag.
+
+## Wave a flag
+Can you invoke help flags for a tool or binary? [This program](picoCTF-2021-assets/Wave-A-Flag/warm) has extraordinarily helpful information...
+
+**solution:**
+
+:triangular_flag_on_post: **picoCTF{b1scu1ts_4nd_gr4vy_d6969390}**
+
+There are two ways to solve this challenge:
+#### Way 1
+Opening the program in HxD and searching (with ctrl+f) "pico" - this will find us the beginning of the flag.
+
+#### Way 2
+Trying to run the program in wsl. When adding the flag -h - it would reveal us the correct flag.
+
+
 
 # Cryptography
 ## Mod 26
