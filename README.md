@@ -22,9 +22,13 @@ Python scripts are invoked kind of like programs in the Terminal... Can you run 
 :triangular_flag_on_post: **picoCTF{4p0110_1n_7h3_h0us3_6008014f}**
 
 We have 3 files here - python script, a password (a string) and a flag (a string). When looking at the python script there are two interesting strings:
+
 ![image](https://user-images.githubusercontent.com/119416868/205485956-f1dde24c-7cfe-4fd3-94ef-6a309980b9d1.png)
+
 sys.argv[0] refers to the python script. We can assume from the script and the help_msg that we need to use the flag -e if we would like to encrypt and the flag -d if we would like to decrypt.
+
 ![image](https://user-images.githubusercontent.com/119416868/205485937-0be2977b-4222-4a0a-8370-6498a20b35e8.png)
+
 Now, we will enter the password that was given to us - 6008014f6008014f6008014f6008014f and reveal the correct flag.
 
 ## Wave a flag
