@@ -39,12 +39,15 @@ Can you invoke help flags for a tool or binary? [This program](picoCTF-2021-ass
 :triangular_flag_on_post: **picoCTF{b1scu1ts_4nd_gr4vy_d6969390}**
 
 There are two ways to solve this challenge:
-#### Way 1
+_Way 1_
 Opening the program in HxD and searching (with ctrl+f) "pico" - this will find us the beginning of the flag.
 
-#### Way 2
+![image](https://user-images.githubusercontent.com/119416868/205487497-8a1cb8ba-db7a-4e7f-ae01-124e08ca6abd.png)
+
+_Way 2_
 Trying to run the program in wsl. When adding the flag -h - it would reveal us the correct flag.
 
+![image](https://user-images.githubusercontent.com/119416868/205487515-13131987-c155-4983-8a2f-e56d0ceb7b10.png)
 
 
 # Cryptography
@@ -56,3 +59,19 @@ Cryptography can be easy, do you know what ROT13 is? cvpbPGS{arkg_gvzr_V'yy_gel_
 :triangular_flag_on_post: **picoCTF{next_time_I'll_try_2_rounds_of_rot13_aFxtzQWR}**
 
 cvpbPGS{arkg_gvzr_V'yy_gel_2_ebhaqf_bs_ebg13_nSkgmDJE} is encrypted with ROT13. Hence, for example, c becomes p, v becomes i and so on.
+
+
+# Forensics
+## information
+Files can always be changed in a secret way. Can you find the flag? [cat.jpg](picoCTF-2021-assets/information/cat.jpg)
+
+**solution:**
+
+:triangular_flag_on_post: **picoCTF{the_m3tadata_1s_modified}**
+
+When opening the image there is a cute :cat2: but is doesn't help us. We will look at the meta-data of this image with exiftool (exiftool cat.jpg).
+
+
+
+The License field looks like Base64 - and when decoding it we will reveal the flag.
+:cat:
