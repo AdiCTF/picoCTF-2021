@@ -59,8 +59,11 @@ There is a nice program that you can talk to by using this command in a shell: 
 :triangular_flag_on_post: **picoCTF{g00d_k1tty!_n1c3_k1tty!_5fb5e51d}**
 
 `nc mercury.picoctf.net 22342` is giving us a list of numbers. I thought that these numbers represent ASCII characters. Therefore, I redirect this list to a file called `inputNetcat.txt`.
+
 Note that I used the command `bash` for the next commands.
 Then, I ran a code that goes line by line and convert the number to its ASCII charecter: `while read -r line; do printf \\$(printf "%o" $line); done < inputNetcat.txt`.
+
+![image](https://user-images.githubusercontent.com/119416868/205496322-83f27e37-5565-4c4e-bb83-75aebe2df488.png)
 
 
 # Cryptography
@@ -82,9 +85,35 @@ Files can always be changed in a secret way. Can you find the flag? [cat.jpg](p
 
 :triangular_flag_on_post: **picoCTF{the_m3tadata_1s_modified}**
 
-When opening the image there is a cute :cat2: but is doesn't help us. We will look at the meta-data of this image with exiftool (`exiftool cat.jpg`).
+When opening the image there is a cute :cat2: but it doesn't help us. We will look at the meta-data of this image with exiftool (`exiftool cat.jpg`).
 
 ![image](https://user-images.githubusercontent.com/119416868/205489998-a9afe0cb-9206-4bdd-8a0c-7914c95095d1.png)
 
 The License field looks like Base64 - and when decoding it we will reveal the flag.
 :cat:
+
+
+# Reverse Engineering
+## Transformation
+I wonder what this really is... [enc](picoCTF-2021-assets/Transformation/enc) `''.join([chr((ord(flag[i]) << 8) + ord(flag[i + 1])) for i in range(0, len(flag), 2)])`
+
+**solution:**
+
+:triangular_flag_on_post: **picoCTF{16_bits_inst34d_of_8_e141a0f7}**
+
+In the site CyberChef I chose the Magic option with Intensive mode and found the flag.
+
+# Binary Exploitation
+## Stonks
+I decided to try something noone else has before. I made a bot to automatically trade stonks for me using AI and machine learning. I wouldn't believe you if you told me it's unsecure! [vuln.c](picoCTF-2021-assets/Stonks/vuln.c) `nc mercury.picoctf.net 33411`
+
+
+
+
+
+
+
+
+
+
+
