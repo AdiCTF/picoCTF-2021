@@ -8,7 +8,7 @@ This file has a flag in plain sight (aka "in-the-clear"). [Download flag.](picoC
 
 **solution:**
 
-:triangular_flag_on_post: **picoCTF{s4n1ty_v3r1f13d_f28ac910}**
+:checkered_flag: **picoCTF{s4n1ty_v3r1f13d_f28ac910}**
 
 when opening the file in Notepad++ - the flag is right there.
 
@@ -19,7 +19,7 @@ Python scripts are invoked kind of like programs in the Terminal... Can you run 
 
 **solution:**
 
-:triangular_flag_on_post: **picoCTF{4p0110_1n_7h3_h0us3_6008014f}**
+:checkered_flag: **picoCTF{4p0110_1n_7h3_h0us3_6008014f}**
 
 We have 3 files here - python script, a password (a string) and a flag (a string). When looking at the python script there are two interesting strings:
 
@@ -36,7 +36,7 @@ Can you invoke help flags for a tool or binary? [This program](picoCTF-2021-ass
 
 **solution:**
 
-:triangular_flag_on_post: **picoCTF{b1scu1ts_4nd_gr4vy_d6969390}**
+:checkered_flag: **picoCTF{b1scu1ts_4nd_gr4vy_d6969390}**
 
 I found two ways to solve this challenge:
 
@@ -56,7 +56,7 @@ There is a nice program that you can talk to by using this command in a shell: 
 
 **solution:**
 
-:triangular_flag_on_post: **picoCTF{g00d_k1tty!_n1c3_k1tty!_5fb5e51d}**
+:checkered_flag: **picoCTF{g00d_k1tty!_n1c3_k1tty!_5fb5e51d}**
 
 `nc mercury.picoctf.net 22342` is giving us a list of numbers. I thought that these numbers represent ASCII characters. Therefore, I redirect this list to a file called `inputNetcat.txt`.
 
@@ -72,7 +72,7 @@ Cryptography can be easy, do you know what ROT13 is? cvpbPGS{arkg_gvzr_V'yy_gel_
 
 **solution:**
 
-:triangular_flag_on_post: **picoCTF{next_time_I'll_try_2_rounds_of_rot13_aFxtzQWR}**
+:checkered_flag: **picoCTF{next_time_I'll_try_2_rounds_of_rot13_aFxtzQWR}**
 
 cvpbPGS{arkg_gvzr_V'yy_gel_2_ebhaqf_bs_ebg13_nSkgmDJE} is encrypted with ROT13. Hence, for example, c becomes p, v becomes i and so on.
 
@@ -83,7 +83,7 @@ Files can always be changed in a secret way. Can you find the flag? [cat.jpg](p
 
 **solution:**
 
-:triangular_flag_on_post: **picoCTF{the_m3tadata_1s_modified}**
+:checkered_flag: **picoCTF{the_m3tadata_1s_modified}**
 
 When opening the image there is a cute :cat2: but it doesn't help us. We will look at the meta-data of this image with exiftool (`exiftool cat.jpg`).
 
@@ -99,7 +99,7 @@ I wonder what this really is... [enc](picoCTF-2021-assets/Transformation/enc) 
 
 **solution:**
 
-:triangular_flag_on_post: **picoCTF{16_bits_inst34d_of_8_e141a0f7}**
+:checkered_flag: **picoCTF{16_bits_inst34d_of_8_e141a0f7}**
 
 In the site CyberChef I chose the Magic option with Intensive mode and found the flag.
 
@@ -107,8 +107,23 @@ In the site CyberChef I chose the Magic option with Intensive mode and found the
 ## Stonks
 I decided to try something noone else has before. I made a bot to automatically trade stonks for me using AI and machine learning. I wouldn't believe you if you told me it's unsecure! [vuln.c](picoCTF-2021-assets/Stonks/vuln.c) `nc mercury.picoctf.net 33411`
 
+**solution:**
 
+🏁 
 
+We will focus on the `buy_stonks` function.
+
+>insert photo
+
+buffer + scanf + printf is a 🚩 for me. 
+In line 93 there is an interestig line: `printf(user_buf);`. The command `printf` without `%s` is prone to format strings attacks. Therefore, we can submit as our API token a string that contains `%x` and "walk" on the stack. Note that we can assume the flag is on the stack from the beginning of the `buy_stonks` function.
+
+>insert photo
+
+Then, after inserting a sequence of `%x` as our API token we will get the content of the stack in _little endian_. 
+With CyberChef we can choose the "swap endianness" option and then convert it from hexa.
+
+>insert photo
 
 
 
