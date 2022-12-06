@@ -109,25 +109,64 @@ I decided to try something noone else has before. I made a bot to automatically 
 
 **solution:**
 
-🏁 
+🏁 **picoCTF{I_l05t_4ll_my_m0n3y_a24c14a6}**
 
 We will focus on the `buy_stonks` function.
 
->insert photo
+![image](https://user-images.githubusercontent.com/119416868/205678644-18ef89c8-4e3a-4547-b46f-83bb24363a1e.png)
 
 buffer + scanf + printf is a 🚩 for me. 
-In line 93 there is an interestig line: `printf(user_buf);`. The command `printf` without `%s` is prone to format strings attacks. Therefore, we can submit as our API token a string that contains `%x` and "walk" on the stack. Note that we can assume the flag is on the stack from the beginning of the `buy_stonks` function.
+In line 93 there is an interestig line: `printf(user_buf);`. The command `printf` without `%s` is prone to format strings attacks. Therefore, after choosing to "Buy some stonks" (option 1), we can submit as our API token a string that contains `%x` and "walk" on the stack. Note that we can assume the flag is on the stack from the beginning of the `buy_stonks` function.
 
->insert photo
+![image](https://user-images.githubusercontent.com/119416868/205678808-8fc791fb-9342-497f-ab34-95c96be1d11b.png)
 
 Then, after inserting a sequence of `%x` as our API token we will get the content of the stack in _little endian_. 
-With CyberChef we can choose the "swap endianness" option and then convert it from hexa.
 
->insert photo
+![image](https://user-images.githubusercontent.com/119416868/205683883-b6fc7dbe-bfc1-4ec6-acc4-d1c8af5654c6.png)
+
+I marked the beginning of our flag. This is "pico" in hex (note that it is in _little endian_). 
+
+![image](https://user-images.githubusercontent.com/119416868/205683568-93e04402-e4c0-46c9-baad-d1bcf4efe3d5.png)
+
+Hence, I will copy from the marked string. With CyberChef we can choose the "swap endianness" option and then convert it from hexa.
+
+![image](https://user-images.githubusercontent.com/119416868/205684947-5b08293a-4eb4-47f5-a1fd-d1132c040124.png)
 
 
 
+# Web Exploitation
+## GET aHEAD
+Find the flag being held on this server to get ahead of the competition [http://mercury.picoctf.net:15931/](http://mercury.picoctf.net:15931/)
 
+**solution:**
+
+🏁 **picoCTF{I_l05t_4ll_my_m0n3y_a24c14a6}**
+
+The attached website is quite simple - changes the background with the click of a button.
+In Burp Suite I tergeted this website.
+
+> insert photo
+
+Then, I opened it on the browser, turned the intercept on and clicked "Choose Red". Here is the Request:
+
+> insert photo
+
+I pressed "Choose Blue" and then Forward on Burp Suite and received the following Request:
+
+> insert photo
+
+As can be seen above, I marked the HTTP request methods that were used - GET & POST. More HTTP request methods can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods). Note that the name of the challenge is "GET aHEAD", therefore I tried replacing GET with HEAD, which is also a HTTP request methods. 
+
+> insert photo
+
+But, Ooops!💣⬜ I got a blank page!
+
+> insert photo
+
+So, I clicked "Options" in the "Proxy" section an chose to intercept responses.
+And after forwarding the request again - the flag was revealed.
+
+> insert photo
 
 
 
