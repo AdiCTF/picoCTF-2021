@@ -66,6 +66,27 @@ Then, I ran a code that goes line by line and convert the number to its ASCII ch
 ![image](https://user-images.githubusercontent.com/119416868/205496322-83f27e37-5565-4c4e-bb83-75aebe2df488.png)
 
 
+## Static ain't always noise
+Can you look at the data in this binary: [static](picoCTF-2021-assets/Static-aint-always-noise/static)? This [BASH script](picoCTF-2021-assets/Static-aint-always-noise/ltdis.sh) might help!
+
+**solution:**
+
+:checkered_flag: **picoCTF{d15a5m_t34s3r_98d35619}**
+
+I found two ways to solve this challenge:
+
+_Way 1_- Opening "static" in HxD and searching (with ctrl+f) "pico" - this will find us the beginning of the flag.
+
+>insert photo
+
+_Way 2_- Using the BASH script that was given to us. 
+
+>insert photo
+
+Then, I opened the "static.ltdis.strings.txt" file and found the flag.
+
+>insert photo
+
 # Cryptography
 ## Mod 26
 Cryptography can be easy, do you know what ROT13 is? cvpbPGS{arkg_gvzr_V'yy_gel_2_ebhaqf_bs_ebg13_nSkgmDJE}
@@ -140,33 +161,37 @@ Find the flag being held on this server to get ahead of the competition [http:/
 
 **solution:**
 
-🏁 **picoCTF{I_l05t_4ll_my_m0n3y_a24c14a6}**
+🏁 **picoCTF{r3j3ct_th3_du4l1ty_82880908}**
 
 The attached website is quite simple - changes the background with the click of a button.
-In Burp Suite I tergeted this website.
+In Burp Suite I targeted this website.
 
-> insert photo
+![image](https://user-images.githubusercontent.com/119416868/206041416-4360464c-800f-447f-8a48-17bfc4802736.png)
 
 Then, I opened it on the browser, turned the intercept on and clicked "Choose Red". Here is the Request:
 
-> insert photo
+![image](https://user-images.githubusercontent.com/119416868/206041461-7daa28d6-1abc-4128-9b17-fe7237d14ffc.png)
 
 I pressed "Choose Blue" and then Forward on Burp Suite and received the following Request:
 
-> insert photo
+![image](https://user-images.githubusercontent.com/119416868/206041506-b0b523e8-afb9-4086-b8dc-2f8aaeeab4a4.png)
 
 As can be seen above, I marked the HTTP request methods that were used - GET & POST. More HTTP request methods can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods). Note that the name of the challenge is "GET aHEAD", therefore I tried replacing GET with HEAD, which is also a HTTP request methods. 
 
-> insert photo
+![image](https://user-images.githubusercontent.com/119416868/206041571-ab25d2a4-1376-4f7d-ba81-29de44b2eef0.png)
 
 But, Ooops!💣⬜ I got a blank page!
 
-> insert photo
+![image](https://user-images.githubusercontent.com/119416868/206041617-92658127-80e8-4dd9-a090-ce2834248173.png)
 
-So, I clicked "Options" in the "Proxy" section an chose to intercept responses.
+So, I clicked "Options" in the "Proxy" section and chose to intercept responses.
+
+![image](https://user-images.githubusercontent.com/119416868/206041692-2b819c75-bc1c-41f7-aec3-0c59f3c40d07.png)
+
 And after forwarding the request again - the flag was revealed.
 
-> insert photo
+![image](https://user-images.githubusercontent.com/119416868/206041735-e182646e-4de6-483c-8ee8-fe83f5b2e283.png)
+
 
 
 
