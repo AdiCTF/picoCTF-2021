@@ -77,15 +77,16 @@ I found two ways to solve this challenge:
 
 _Way 1_- Opening "static" in HxD and searching (with ctrl+f) "pico" - this will find us the beginning of the flag.
 
->insert photo
+![image](https://user-images.githubusercontent.com/119416868/206221922-4253304a-249b-4c70-a000-b4d2d505c7e1.png)
 
 _Way 2_- Using the BASH script that was given to us. 
 
->insert photo
+![image](https://user-images.githubusercontent.com/119416868/206221998-92059293-a192-45c3-bd65-99c8b41d4184.png)
 
 Then, I opened the "static.ltdis.strings.txt" file and found the flag.
 
->insert photo
+![image](https://user-images.githubusercontent.com/119416868/206222070-e24907cd-e032-4d0f-abde-88c8b7b9d088.png)
+
 
 # Cryptography
 ## Mod 26
@@ -96,6 +97,18 @@ Cryptography can be easy, do you know what ROT13 is? cvpbPGS{arkg_gvzr_V'yy_gel_
 :checkered_flag: **picoCTF{next_time_I'll_try_2_rounds_of_rot13_aFxtzQWR}**
 
 cvpbPGS{arkg_gvzr_V'yy_gel_2_ebhaqf_bs_ebg13_nSkgmDJE} is encrypted with ROT13. Hence, for example, c becomes p, v becomes i and so on.
+
+## Mind your Ps and Qs
+In RSA, a small `e` value can be problematic, but what about `N`? Can you decrypt this? [values](picoCTF-2021-assets/Mind-Your-Ps-and-Qs/values)
+
+**solution:**
+
+:checkered_flag: **picoCTF{sma11_N_n0_g0od_00264570}**
+
+RSA, which stands for Rivest–Shamir–Adleman is an asymmetric cryptography algorithm. For understanding the algorithm, I have found the following videos very useful:
+- [The RSA Encryption Algorithm (1 of 2: Computing an Example)](https://www.youtube.com/@misterwootube)
+- [The RSA Encryption Algorithm (2 of 2: Generating the Keys)](https://www.youtube.com/@misterwootube)
+After watching the videos I found the prime factors of the n we got using this [site](https://www.dcode.fr/prime-factors-decomposition). Then I wrote this [python code](picoCTF-2021-assets/Mind-Your-Ps-and-Qs/RSA), ran it and found the flag.
 
 
 # Forensics
