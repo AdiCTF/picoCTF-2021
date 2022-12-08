@@ -88,6 +88,18 @@ Then, I opened the "static.ltdis.strings.txt" file and found the flag.
 ![image](https://user-images.githubusercontent.com/119416868/206222070-e24907cd-e032-4d0f-abde-88c8b7b9d088.png)
 
 
+## Tab, Tab, Attack
+Using tabcomplete in the Terminal will add years to your life, esp. when dealing with long rambling directory structures and filenames: [Addadshashanammu.zip](picoCTF-2021-assets/Tab-Tab-Attack/Addadshashanammu.zip)
+
+**solution:**
+
+:checkered_flag: **picoCTF{l3v3l_up!_t4k3_4_r35t!_f3553887}**
+
+First, I uziped the file we got. Then, I wrote the name of the file (without the `.zip` ending) and pressed `tab` until I got to a file that is not a directory. After that, I pressed `enter` and got the flag. It is shown in the video below:
+
+
+
+
 # Cryptography
 ## Mod 26
 Cryptography can be easy, do you know what ROT13 is? cvpbPGS{arkg_gvzr_V'yy_gel_2_ebhaqf_bs_ebg13_nSkgmDJE}
