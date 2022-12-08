@@ -110,8 +110,37 @@ RSA, which stands for Rivest–Shamir–Adleman is an asymmetric cryptography al
 - [The RSA Encryption Algorithm (2 of 2: Generating the Keys)](https://youtu.be/oOcTVTpUsPQ)
 
 After watching the videos I found the prime factors of the n we got using this [site](https://www.dcode.fr/prime-factors-decomposition). 
-Then, I wrote this [python code](picoCTF-2021-assets/Mind-Your-Ps-and-Qs/RSA.py), ran it and found the flag.
-
+I got that the prime factors are:
+```
+p = 2159947535959146091116171018558446546179  
+q = 658558036833541874645521278345168572231473 
+```
+Then, I wrote the next python code and found the flag:
+```
+from Crypto.Util.number import inverse, long_to_bytes  
+  
+# prime factors of n  
+p = 2159947535959146091116171018558446546179  
+q = 658558036833541874645521278345168572231473  
+# The given e  
+e = 65537  
+# The given c - what we want to decrypt  
+c = 843044897663847841476319711639772861390329326681532977209935413827620909782846667  
+  
+phi = (p - 1) * (q - 1)  
+d  = inverse(e, phi)  
+# inverse is logically equivalent to:  
+# for d in range(phi + 1):  
+#     if d * e % phi == 1:  
+#         break  
+  
+n = p * q  
+num_integer = pow(c, d, n)  
+# logically equivalent to:  
+# num_integer = (c ^ d) % n  
+  
+print(long_to_bytes(num_integer))
+```
 
 # Forensics
 ## information
@@ -191,7 +220,7 @@ I pressed "Choose Blue" and then Forward on Burp Suite and received the followin
 
 ![image](https://user-images.githubusercontent.com/119416868/206041506-b0b523e8-afb9-4086-b8dc-2f8aaeeab4a4.png)
 
-As can be seen above, I marked the HTTP request methods that were used - GET & POST. More HTTP request methods can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods). Note that the name of the challenge is "GET aHEAD", therefore I tried replacing GET with HEAD, which is also a HTTP request methods. 
+As can be seen above, I marked the HTTP request methods that were used - GET & POST. More HTTP request methods can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods). Note that the name of the challenge is "GET aHEAD", therefore I tried replacing GET with HEAD, which is also a HTTP request method. 
 
 ![image](https://user-images.githubusercontent.com/119416868/206041571-ab25d2a4-1376-4f7d-ba81-29de44b2eef0.png)
 
