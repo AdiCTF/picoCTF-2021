@@ -108,7 +108,9 @@ In RSA, a small `e` value can be problematic, but what about `N`? Can you dec
 RSA, which stands for Rivest–Shamir–Adleman is an asymmetric cryptography algorithm. For understanding the algorithm, I have found the following videos very useful:
 - [The RSA Encryption Algorithm (1 of 2: Computing an Example)](https://www.youtube.com/@misterwootube)
 - [The RSA Encryption Algorithm (2 of 2: Generating the Keys)](https://www.youtube.com/@misterwootube)
-After watching the videos I found the prime factors of the n we got using this [site](https://www.dcode.fr/prime-factors-decomposition). Then I wrote this [python code](picoCTF-2021-assets/Mind-Your-Ps-and-Qs/RSA), ran it and found the flag.
+
+After watching the videos I found the prime factors of the n we got using this [site](https://www.dcode.fr/prime-factors-decomposition). 
+Then, I wrote this [python code](picoCTF-2021-assets/Mind-Your-Ps-and-Qs/RSA), ran it and found the flag.
 
 
 # Forensics
