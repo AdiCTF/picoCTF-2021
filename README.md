@@ -97,7 +97,7 @@ Using tabcomplete in the Terminal will add years to your life, esp. when dealing
 
 First, I uziped the file we got. Then, I wrote the name of the file (without the `.zip` ending) and pressed `tab` until I got to a file that is not a directory. After that, I pressed `enter` and got the flag. It is shown in the video below:
 
-
+https://user-images.githubusercontent.com/119416868/206487395-449662d3-0e22-4121-a07b-d8de526f933e.mp4
 
 
 # Cryptography
@@ -169,6 +169,14 @@ When opening the image there is a cute :cat2: but it doesn't help us. We will lo
 The License field looks like Base64 - and when decoding it we will reveal the flag.
 :cat:
 
+## Matryoshka doll
+Matryoshka dolls are a set of wooden dolls of decreasing size placed one inside another. What's the final one? Image: [this](picoCTF-2021-assets/Matryoshka-doll/dolls.jpg)
+
+**solution:**
+
+:checkered_flag: ****
+
+
 
 # Reverse Engineering
 ## Transformation
@@ -179,6 +187,48 @@ I wonder what this really is... [enc](picoCTF-2021-assets/Transformation/enc) 
 :checkered_flag: **picoCTF{16_bits_inst34d_of_8_e141a0f7}**
 
 In the site CyberChef I chose the Magic option with Intensive mode and found the flag.
+
+## keygenme-py
+[keygenme-trial.py](picoCTF-2021-assets/keygenme-py/keygenme-trial.py)
+
+**solution:**
+
+:checkered_flag: **picoCTF{1n_7h3_|<3y_of_0d208392}**
+
+I ran the python file we got. Then, I had to choose one of four options. Because the name of the challenge is `keygenme-py`, I chose `(c) Enter License Key`. 
+
+> insert image
+
+But, I don't know the license key so I will try to figure it out from the python file.
+When opening the file the is the beginning of a flag and I guess we will have to find the `dynamic` part of it.
+
+> insert image
+
+When I chose the `(c)` option, the function `enter_license` was called. This functionis the only one which is calling to the function `decrypt_full_version` - our goal in this challenge. 
+
+> insert image
+
+In order to reach the `decrypt_full_version` function, I will have to look at the function `check_key`. From this function I can assume that my license key should be as long as the `key_full_template_trial` that can be seen above. In addition, both should have the same static part and we can get the dynamic part by using the sha256 hashing algorithm as can be seen in the following code:
+```
+import hashlib  
+username_trial = b"FREEMAN"  
+  
+dynamic = [ hashlib.sha256(username_trial).hexdigest()[4],  
+    hashlib.sha256(username_trial).hexdigest()[5],  
+    hashlib.sha256(username_trial).hexdigest()[3],  
+    hashlib.sha256(username_trial).hexdigest()[6],  
+    hashlib.sha256(username_trial).hexdigest()[2],  
+    hashlib.sha256(username_trial).hexdigest()[7],  
+    hashlib.sha256(username_trial).hexdigest()[1],  
+    hashlib.sha256(username_trial).hexdigest()[8] ]  
+  
+print(*dynamic, sep="")
+```
+
+I got that the dynamic part is `0d208392` and when combined with the static parts I got that the flag is: picoCTF{1n_7h3_|<3y_of_0d208392}.
+After entering it as the license key, we get the full version.
+
+> insert image
 
 # Binary Exploitation
 ## Stonks
