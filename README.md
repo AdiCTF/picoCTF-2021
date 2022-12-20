@@ -197,16 +197,19 @@ In the site CyberChef I chose the Magic option with Intensive mode and found the
 
 I ran the python file we got. Then, I had to choose one of four options. Because the name of the challenge is `keygenme-py`, I chose `(c) Enter License Key`. 
 
-> insert image
+![image](https://user-images.githubusercontent.com/119416868/208479461-d246c7c4-1545-4643-834b-d12a8d7438fb.png)
 
 But, I don't know the license key so I will try to figure it out from the python file.
 When opening the file the is the beginning of a flag and I guess we will have to find the `dynamic` part of it.
+```
+key_part_static1_trial = "picoCTF{1n_7h3_|<3y_of_"
+key_part_dynamic1_trial = "xxxxxxxx"
+key_part_static2_trial = "}"
+key_full_template_trial = key_part_static1_trial + key_part_dynamic1_trial + key_part_static2_trial
+```
+When I chose the `(c)` option, the function `enter_license` was called. This function is the only one which is calling to the function `decrypt_full_version` - our goal in this challenge. 
 
-> insert image
-
-When I chose the `(c)` option, the function `enter_license` was called. This functionis the only one which is calling to the function `decrypt_full_version` - our goal in this challenge. 
-
-> insert image
+![image](https://user-images.githubusercontent.com/119416868/208479751-4bc56522-1e00-4363-83a4-1c257a7a9235.png)
 
 In order to reach the `decrypt_full_version` function, I will have to look at the function `check_key`. From this function I can assume that my license key should be as long as the `key_full_template_trial` that can be seen above. In addition, both should have the same static part and we can get the dynamic part by using the sha256 hashing algorithm as can be seen in the following code:
 ```
@@ -228,7 +231,29 @@ print(*dynamic, sep="")
 I got that the dynamic part is `0d208392` and when combined with the static parts I got that the flag is: picoCTF{1n_7h3_|<3y_of_0d208392}.
 After entering it as the license key, we get the full version.
 
-> insert image
+![image](https://user-images.githubusercontent.com/119416868/208479824-99fcee05-8d24-411a-9c60-0ed2057cc2cc.png)
+
+
+## crackme-py
+[crackme.py](picoCTF-2021-assets/crackme-py/crackme.py)
+
+**solution:**
+
+:checkered_flag: **picoCTF{1|\/|_4_p34|\|ut_ef5b69a3}**
+
+I ran the python file with wsl and entered some numbers just to understand the program.
+
+>insert photo
+
+Then, I opened the python file and understood that I had to decode a secret -
+```
+bezos_cc_secret = "A:4@r%uL`M-^M0c0AbcM-MFE067d3eh2bN"
+```
+Also, there were two functions at that file - `decode_secret` and `choose_greatest` but it only used `choose_greatest`. Therefore I used the function `decode_secret` with `bezos_cc_secret` as parameter and after I ran it - I got the flag. You can see the new and correct file `ICrackedYou.py` [here](picoCTF-2021-assets/crackme-py/ICrackedYou.py).
+And below you can see the revealing of the flag:
+
+>insert photo
+
 
 # Binary Exploitation
 ## Stonks
