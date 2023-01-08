@@ -174,8 +174,15 @@ Matryoshka dolls are a set of wooden dolls of decreasing size placed one inside 
 
 **solution:**
 
-:checkered_flag: ****
+:checkered_flag: **picoCTF{96fac089316e094d41ea046900197662}**
 
+We got an image of a doll. I tried to use the tool `binwalk` (`binwalk dolls.jpg`) which is a tool for searching a given binary image for embedded files and executable code. Then, I got the following output:
+
+>insert image
+
+I assumed that I should add tha `-e` flag in order to extract the zip file so I tried again with `binwalk -e dolls.jpg`. Then, an interasting directory was shown - `_dolls.jpg.extracted`. When opening this file there is another interesting directory (`base_images`) with another doll image inside. Here we can see a living example of matryoshka dolls - an image inside image. Therefore I wrote a [bash script](picoCTF-2021-assets/Matryoshka-doll/matryoshkaScript.sh) in order to go through all the images untill I find the flag. Then, I found the flag:
+
+>insert image
 
 
 # Reverse Engineering
@@ -243,7 +250,7 @@ After entering it as the license key, we get the full version.
 
 I ran the python file with wsl and entered some numbers just to understand the program.
 
->insert photo
+![image](https://user-images.githubusercontent.com/119416868/208692444-ba2758d7-71e1-4cb2-a7b7-14528244416d.png)
 
 Then, I opened the python file and understood that I had to decode a secret -
 ```
@@ -252,7 +259,8 @@ bezos_cc_secret = "A:4@r%uL`M-^M0c0AbcM-MFE067d3eh2bN"
 Also, there were two functions at that file - `decode_secret` and `choose_greatest` but it only used `choose_greatest`. Therefore I used the function `decode_secret` with `bezos_cc_secret` as parameter and after I ran it - I got the flag. You can see the new and correct file `ICrackedYou.py` [here](picoCTF-2021-assets/crackme-py/ICrackedYou.py).
 And below you can see the revealing of the flag:
 
->insert photo
+![image](https://user-images.githubusercontent.com/119416868/208692498-0bf2f873-72c7-4a1f-9e1d-6b6895c59eb7.png)
+
 
 
 # Binary Exploitation
