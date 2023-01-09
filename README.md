@@ -100,6 +100,27 @@ First, I uziped the file we got. Then, I wrote the name of the file (without the
 https://user-images.githubusercontent.com/119416868/206487395-449662d3-0e22-4121-a07b-d8de526f933e.mp4
 
 
+## Magikarp Ground Mission
+Do you know how to move between directories and read files in the shell? Start the container, `ssh` to it, and then `ls` once connected to begin. Login via `ssh` as `ctf-player` with the password, `481e7b14`
+
+**solution:**
+
+:checkered_flag: **picoCTF{xxsh_0ut_0f_\/\/4t3r_1118a9a4}**
+
+This challenge launches an instance on demand by pressing this bottom:
+
+>insert photo
+
+After pressing I got a `ssh` command:
+
+>insert photo
+
+Then, I copied and pasted it to the "picoCTF Webshell" and inserted the password that was given - `481e7b14`. 
+After connecting I used the command `ls` and found out there were 2 files - `1of3.flag.txt, instructions-to-2of3.txt`. `1of3.flag.txt` contained part of the flag and `instructions-to-2of3.txt` instructed me to go to the root directory. In the root directory there were many files but I needed only two - `2of3.flag.txt, instructions-to-3of3.txt`. `2of3.flag.txt` contained another part of the flag and `instructions-to-3of3.txt` instructed me to go to the home directory. There, in the file `3of3.flag.txt` I found the last part of the flag. I put all the pieces together and got my flag - picoCTF{xxsh_0ut_0f_\/\/4t3r_1118a9a4}. You can see the full journey below:
+
+>insert photo
+
+
 # Cryptography
 ## Mod 26
 Cryptography can be easy, do you know what ROT13 is? cvpbPGS{arkg_gvzr_V'yy_gel_2_ebhaqf_bs_ebg13_nSkgmDJE}
@@ -178,11 +199,12 @@ Matryoshka dolls are a set of wooden dolls of decreasing size placed one inside 
 
 We got an image of a doll. I tried to use the tool `binwalk` (`binwalk dolls.jpg`) which is a tool for searching a given binary image for embedded files and executable code. Then, I got the following output:
 
->insert image
+![image](https://user-images.githubusercontent.com/119416868/211202213-ab29bad7-5d25-41f6-8d30-36fff70ffdb1.png)
 
 I assumed that I should add tha `-e` flag in order to extract the zip file so I tried again with `binwalk -e dolls.jpg`. Then, an interasting directory was shown - `_dolls.jpg.extracted`. When opening this file there is another interesting directory (`base_images`) with another doll image inside. Here we can see a living example of matryoshka dolls - an image inside image. Therefore I wrote a [bash script](picoCTF-2021-assets/Matryoshka-doll/matryoshkaScript.sh) in order to go through all the images untill I find the flag. Then, I found the flag:
 
->insert image
+![image](https://user-images.githubusercontent.com/119416868/211202195-3c55e066-8d68-437d-ae09-cea54e95475e.png)
+
 
 
 # Reverse Engineering
