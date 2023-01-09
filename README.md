@@ -109,16 +109,16 @@ Do you know how to move between directories and read files in the shell? Start t
 
 This challenge launches an instance on demand by pressing this bottom:
 
->insert photo
+![image](https://user-images.githubusercontent.com/119416868/211296833-86c69aeb-2bd8-4d0e-8cb2-741202d83ebe.png)
 
 After pressing I got a `ssh` command:
 
->insert photo
+![image](https://user-images.githubusercontent.com/119416868/211296870-303fd6a3-a9d6-4110-9368-c1b29769d9c8.png)
 
 Then, I copied and pasted it to the "picoCTF Webshell" and inserted the password that was given - `481e7b14`. 
 After connecting I used the command `ls` and found out there were 2 files - `1of3.flag.txt, instructions-to-2of3.txt`. `1of3.flag.txt` contained part of the flag and `instructions-to-2of3.txt` instructed me to go to the root directory. In the root directory there were many files but I needed only two - `2of3.flag.txt, instructions-to-3of3.txt`. `2of3.flag.txt` contained another part of the flag and `instructions-to-3of3.txt` instructed me to go to the home directory. There, in the file `3of3.flag.txt` I found the last part of the flag. I put all the pieces together and got my flag - picoCTF{xxsh_0ut_0f_\/\/4t3r_1118a9a4}. You can see the full journey below:
 
->insert photo
+![image](https://user-images.githubusercontent.com/119416868/211296917-43e4eab3-16bd-4cef-b4fa-e610e14c5df9.png)
 
 
 # Cryptography
