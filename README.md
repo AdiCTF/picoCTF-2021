@@ -14,6 +14,9 @@ when opening the file in Notepad++ - the flag is right there.
 
 ![image](https://user-images.githubusercontent.com/119416868/204558531-1793b137-32c7-4def-8d01-bdd1f53fa5bb.png)
 
+
+
+
 ## Python Wrangling
 Python scripts are invoked kind of like programs in the Terminal... Can you run [this Python script](picoCTF-2021-assets/Python-Wrangling/ende.py) using [this password](picoCTF-2021-assets/Python-Wrangling/pw.txt) to get [the flag](picoCTF-2021-assets/Python-Wrangling/flag.txt.en)?
 
@@ -30,6 +33,8 @@ sys.argv[0] refers to the python script. We can assume from the script and the h
 ![image](https://user-images.githubusercontent.com/119416868/205485937-0be2977b-4222-4a0a-8370-6498a20b35e8.png)
 
 Now, we will enter the password that was given to us - 6008014f6008014f6008014f6008014f and reveal the correct flag.
+
+
 
 ## Wave a flag
 Can you invoke help flags for a tool or binary? [This program](picoCTF-2021-assets/Wave-A-Flag/warm) has extraordinarily helpful information...
@@ -51,6 +56,8 @@ Trying to run the program in wsl. When adding the flag -h - it would reveal us t
 ![image](https://user-images.githubusercontent.com/119416868/205487515-13131987-c155-4983-8a2f-e56d0ceb7b10.png)
 
 
+
+
 ## Nice netcat...
 There is a nice program that you can talk to by using this command in a shell: `$ nc mercury.picoctf.net 22342`, but it doesn't speak English...
 
@@ -64,6 +71,8 @@ Note that I used the command `bash` for the next commands.
 Then, I ran a code that goes line by line and convert the number to its ASCII charecter: `while read -r line; do printf \\$(printf "%o" $line); done < inputNetcat.txt`.
 
 ![image](https://user-images.githubusercontent.com/119416868/205496322-83f27e37-5565-4c4e-bb83-75aebe2df488.png)
+
+
 
 
 ## Static ain't always noise
@@ -88,6 +97,8 @@ Then, I opened the "static.ltdis.strings.txt" file and found the flag.
 ![image](https://user-images.githubusercontent.com/119416868/206222070-e24907cd-e032-4d0f-abde-88c8b7b9d088.png)
 
 
+
+
 ## Tab, Tab, Attack
 Using tabcomplete in the Terminal will add years to your life, esp. when dealing with long rambling directory structures and filenames: [Addadshashanammu.zip](picoCTF-2021-assets/Tab-Tab-Attack/Addadshashanammu.zip)
 
@@ -100,6 +111,8 @@ First, I uziped the file we got. Then, I wrote the name of the file (without the
 https://user-images.githubusercontent.com/119416868/206487395-449662d3-0e22-4121-a07b-d8de526f933e.mp4
 
 
+
+
 ## Magikarp Ground Mission
 Do you know how to move between directories and read files in the shell? Start the container, `ssh` to it, and then `ls` once connected to begin. Login via `ssh` as `ctf-player` with the password, `481e7b14`
 
@@ -109,16 +122,21 @@ Do you know how to move between directories and read files in the shell? Start t
 
 This challenge launches an instance on demand by pressing this bottom:
 
->insert photo
+![image](https://user-images.githubusercontent.com/119416868/211296833-86c69aeb-2bd8-4d0e-8cb2-741202d83ebe.png)
 
 After pressing I got a `ssh` command:
 
->insert photo
+![image](https://user-images.githubusercontent.com/119416868/211296870-303fd6a3-a9d6-4110-9368-c1b29769d9c8.png)
 
 Then, I copied and pasted it to the "picoCTF Webshell" and inserted the password that was given - `481e7b14`. 
-After connecting I used the command `ls` and found out there were 2 files - `1of3.flag.txt, instructions-to-2of3.txt`. `1of3.flag.txt` contained part of the flag and `instructions-to-2of3.txt` instructed me to go to the root directory. In the root directory there were many files but I needed only two - `2of3.flag.txt, instructions-to-3of3.txt`. `2of3.flag.txt` contained another part of the flag and `instructions-to-3of3.txt` instructed me to go to the home directory. There, in the file `3of3.flag.txt` I found the last part of the flag. I put all the pieces together and got my flag - picoCTF{xxsh_0ut_0f_\/\/4t3r_1118a9a4}. You can see the full journey below:
+After connecting I used the command `ls` and found out there were 2 files - `1of3.flag.txt, instructions-to-2of3.txt`. `1of3.flag.txt` contained part of the flag and `instructions-to-2of3.txt` instructed me to go to the root directory. 
+In the root directory there were many files but I needed only two - `2of3.flag.txt, instructions-to-3of3.txt`. `2of3.flag.txt` contained another part of the flag and `instructions-to-3of3.txt` instructed me to go to the home directory. 
+There, in the file `3of3.flag.txt` I found the last part of the flag. I put all the pieces together and got my flag - picoCTF{xxsh_0ut_0f_\/\/4t3r_1118a9a4}. 
+You can see the full journey below:
 
->insert photo
+![image](https://user-images.githubusercontent.com/119416868/211296917-43e4eab3-16bd-4cef-b4fa-e610e14c5df9.png)
+
+
 
 
 # Cryptography
@@ -130,6 +148,8 @@ Cryptography can be easy, do you know what ROT13 is? cvpbPGS{arkg_gvzr_V'yy_gel_
 :checkered_flag: **picoCTF{next_time_I'll_try_2_rounds_of_rot13_aFxtzQWR}**
 
 cvpbPGS{arkg_gvzr_V'yy_gel_2_ebhaqf_bs_ebg13_nSkgmDJE} is encrypted with ROT13. Hence, for example, c becomes p, v becomes i and so on.
+
+
 
 ## Mind your Ps and Qs
 In RSA, a small `e` value can be problematic, but what about `N`? Can you decrypt this? [values](picoCTF-2021-assets/Mind-Your-Ps-and-Qs/values)
@@ -175,6 +195,8 @@ num_integer = pow(c, d, n)
 print(long_to_bytes(num_integer))
 ```
 
+
+
 # Forensics
 ## information
 Files can always be changed in a secret way. Can you find the flag? [cat.jpg](picoCTF-2021-assets/information/cat.jpg)
@@ -190,6 +212,8 @@ When opening the image there is a cute :cat2: but it doesn't help us. We will lo
 The License field looks like Base64 - and when decoding it we will reveal the flag.
 :cat:
 
+
+
 ## Matryoshka doll
 Matryoshka dolls are a set of wooden dolls of decreasing size placed one inside another. What's the final one? Image: [this](picoCTF-2021-assets/Matryoshka-doll/dolls.jpg)
 
@@ -201,9 +225,32 @@ We got an image of a doll. I tried to use the tool `binwalk` (`binwalk dolls.jpg
 
 ![image](https://user-images.githubusercontent.com/119416868/211202213-ab29bad7-5d25-41f6-8d30-36fff70ffdb1.png)
 
-I assumed that I should add tha `-e` flag in order to extract the zip file so I tried again with `binwalk -e dolls.jpg`. Then, an interasting directory was shown - `_dolls.jpg.extracted`. When opening this file there is another interesting directory (`base_images`) with another doll image inside. Here we can see a living example of matryoshka dolls - an image inside image. Therefore I wrote a [bash script](picoCTF-2021-assets/Matryoshka-doll/matryoshkaScript.sh) in order to go through all the images untill I find the flag. Then, I found the flag:
+I assumed that I should add tha `-e` flag in order to extract the zip file so I tried again with `binwalk -e dolls.jpg`. Then, an interasting directory was shown - `_dolls.jpg.extracted`. When opening this file there is another interesting directory (`base_images`) with another doll image inside. Here we can see a living example of matryoshka dolls - an image inside image. Therefore I wrote a [bash script](picoCTF-2021-assets/Matryoshka-doll/matryoshkaScript.sh) in order to go through all the images untill I find the flag:
+```
+#!/bin/bash
+
+binwalk -e $@ > /dev/null 2>&1 #binwalk on dolls.jpg and redirecting the output to /dev/null
+cd _$@.extracted/ #going inside the extracted directory which is named "_dolls.jpg.extracted"
+
+while true; do 
+	if test -f "flag.txt"; then #checking if there is a flag.txt file
+		cat "flag.txt" #printing the contect of the flag file
+		exit 0
+	fi
+
+	cd base_images/ 
+	image=$(find . -name *.jpg) #finding the next image
+	image=$(echo "${image:2}")
+	binwalk -e $image > /dev/null 2>&1
+	cd _${image}.extracted/
+	
+done
+```
+
+Then, I found the flag:
 
 ![image](https://user-images.githubusercontent.com/119416868/211202195-3c55e066-8d68-437d-ae09-cea54e95475e.png)
+
 
 
 
@@ -263,6 +310,8 @@ After entering it as the license key, we get the full version.
 ![image](https://user-images.githubusercontent.com/119416868/208479824-99fcee05-8d24-411a-9c60-0ed2057cc2cc.png)
 
 
+
+
 ## crackme-py
 [crackme.py](picoCTF-2021-assets/crackme-py/crackme.py)
 
@@ -282,6 +331,7 @@ Also, there were two functions at that file - `decode_secret` and `choose_greate
 And below you can see the revealing of the flag:
 
 ![image](https://user-images.githubusercontent.com/119416868/208692498-0bf2f873-72c7-4a1f-9e1d-6b6895c59eb7.png)
+
 
 
 
@@ -313,6 +363,7 @@ I marked the beginning of our flag. This is "pico" in hex (note that it is in _l
 Hence, I will copy from the marked string. With CyberChef we can choose the "swap endianness" option and then convert it from hexa.
 
 ![image](https://user-images.githubusercontent.com/119416868/205684947-5b08293a-4eb4-47f5-a1fd-d1132c040124.png)
+
 
 
 
